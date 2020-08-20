@@ -24,7 +24,7 @@ class DeviceInfoDialogAndroid extends StatelessWidget {
           return Container();
         }
 
-        AndroidDeviceInfo device = snapshot.data;
+        final device = snapshot.data;
 
         return SingleChildScrollView(
           child: Column(

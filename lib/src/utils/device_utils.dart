@@ -24,13 +24,13 @@ class DeviceUtils {
   }
 
   static Future<AndroidDeviceInfo> androidDeviceInfo() async {
-    DeviceInfoPlugin plugin = DeviceInfoPlugin();
+    final plugin = DeviceInfoPlugin();
 
     return plugin.androidInfo;
   }
 
   static Future<IosDeviceInfo> iosDeviceInfo() async {
-    DeviceInfoPlugin plugin = DeviceInfoPlugin();
+    final plugin = DeviceInfoPlugin();
 
     return plugin.iosInfo;
   }

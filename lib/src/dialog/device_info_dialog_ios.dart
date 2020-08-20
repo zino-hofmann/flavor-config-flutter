@@ -24,7 +24,7 @@ class DeviceInfoDialogIOS extends StatelessWidget {
           return Container();
         }
 
-        IosDeviceInfo device = snapshot.data;
+        final device = snapshot.data;
 
         return SingleChildScrollView(
           child: Column(
