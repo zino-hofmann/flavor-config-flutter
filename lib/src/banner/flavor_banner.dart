@@ -4,6 +4,7 @@ import 'package:flavor_config/src/config/flavor_config.dart';
 import 'package:flavor_config/src/dialog/device_info_dialog.dart';
 
 class FlavorBanner extends StatelessWidget {
+  /// The child where the banner should be rendered on top of.
   final Widget child;
 
   FlavorBanner({

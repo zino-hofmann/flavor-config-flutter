@@ -7,6 +7,7 @@ enum BuildMode {
 }
 
 class DeviceUtils {
+  /// Returns the current build mode.
   static BuildMode currentBuildMode() {
     if (const bool.fromEnvironment('dart.vm.product')) {
       return BuildMode.RELEASE;
@@ -23,12 +24,14 @@ class DeviceUtils {
     return result;
   }
 
+  /// Returns a [Future] resolving into [AndroidDeviceInfo].
   static Future<AndroidDeviceInfo> androidDeviceInfo() async {
     final plugin = DeviceInfoPlugin();
 
     return plugin.androidInfo;
   }
 
+  /// Returns a [Future] resolving into [IosDeviceInfo].
   static Future<IosDeviceInfo> iosDeviceInfo() async {
     final plugin = DeviceInfoPlugin();
 
