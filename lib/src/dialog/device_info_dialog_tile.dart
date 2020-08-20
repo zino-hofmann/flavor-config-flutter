@@ -13,8 +13,11 @@ class DeviceInfoDialogTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(4.0),
+      padding: EdgeInsets.symmetric(
+        vertical: 4.0,
+      ),
       child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
           Text(
             name,

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:flavor_config/src/config/flavor_config.dart';
 import 'package:flavor_config/src/dialog/device_info_dialog_android.dart';
 import 'package:flavor_config/src/dialog/device_info_dialog_ios.dart';
 
@@ -14,20 +13,7 @@ class DeviceInfoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      contentPadding: EdgeInsets.only(
-        bottom: 10.0,
-      ),
-      title: Container(
-        padding: EdgeInsets.all(16.0),
-        color: FlavorConfig.instance.color,
-        child: Text(
-          'Device Info',
-          style: TextStyle(
-            color: Colors.white,
-          ),
-        ),
-      ),
-      titlePadding: EdgeInsets.all(0),
+      title: Text('Device Info'),
       content: _getContent(),
     );
   }

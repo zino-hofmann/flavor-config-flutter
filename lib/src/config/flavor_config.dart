@@ -8,7 +8,10 @@ class FlavorConfig {
   final bool bannerEnabled;
 
   /// The color of the banner if enabled.
-  final Color color;
+  final Color bannerColor;
+
+  /// The color of the text inside the banner if enabled.
+  final Color textColor;
 
   /// The values that belong to the flavor.
   final Map<String, dynamic> values;
@@ -22,13 +25,15 @@ class FlavorConfig {
   factory FlavorConfig({
     @required String flavorName,
     bool bannerEnabled = true,
-    Color color = Colors.pink,
+    Color bannerColor = Colors.pink,
+    Color textColor = Colors.white,
     @required Map<String, dynamic> values,
   }) {
     _instance ??= FlavorConfig._internal(
       flavorName,
       bannerEnabled,
-      color,
+      bannerColor,
+      textColor,
       values,
     );
 
@@ -38,7 +43,8 @@ class FlavorConfig {
   FlavorConfig._internal(
     this.flavorName,
     this.bannerEnabled,
-    this.color,
+    this.bannerColor,
+    this.textColor,
     this.values,
   );
 
@@ -49,7 +55,10 @@ class FlavorConfig {
   static bool isBannerEnabled() => _instance.bannerEnabled;
 
   /// Gets the color of the banner if enabled.
-  static Color getColor() => _instance.color;
+  static Color getBannerColor() => _instance.bannerColor;
+
+  /// Gets the color of the text inside the banner if enabled.
+  static Color getTextColor() => _instance.textColor;
 
   /// Gets the values that belong to the flavor.
   static Map<String, dynamic> getValues() => _instance.values;

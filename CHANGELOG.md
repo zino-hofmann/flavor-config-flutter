@@ -1,3 +1,8 @@
+## [1.1.0] - 20-08-2020.
+
+- Added support to define both the `bannerColor` and `textColor`.
+- Remove `textDirection` option.
+
 ## [1.0.1] - 20-08-2020.
 
 - Added `textDirection` option.

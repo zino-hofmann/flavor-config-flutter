@@ -4,14 +4,15 @@ import 'package:flavor_config/src/config/flavor_config.dart';
 import 'package:flavor_config/src/dialog/device_info_dialog.dart';
 
 class FlavorBanner extends StatelessWidget {
-  /// The [TextDirection] of the text inside the banner.
-  final TextDirection textDirection;
+  /// The [GlobalKey<NavigatorState>] for when the [FlavorBanner] in not in a context with
+  /// that includes a [Navigator].
+  final GlobalKey<NavigatorState> navigatorKey;
 
   /// The child where the banner should be rendered on top of.
   final Widget child;
 
   FlavorBanner({
-    @required this.textDirection,
+    this.navigatorKey,
     @required this.child,
   });
 
@@ -31,15 +32,25 @@ class FlavorBanner extends StatelessWidget {
             height: 50,
             child: CustomPaint(
               painter: BannerPainter(
-                message: FlavorConfig.instance.flavorName,
-                textDirection: textDirection,
-                layoutDirection: textDirection,
+                message: FlavorConfig.getFlavorName().toUpperCase(),
+                textDirection: Directionality.of(context),
+                layoutDirection: Directionality.of(context),
                 location: BannerLocation.topStart,
-                color: FlavorConfig.instance.color,
+                color: FlavorConfig.getBannerColor(),
+                textStyle: TextStyle(
+                  color: FlavorConfig.getTextColor(),
+                  fontSize: 12.0 * 0.85,
+                  fontWeight: FontWeight.w900,
+                  height: 1.0,
+                ),
               ),
             ),
           ),
           onLongPress: () {
+            if (navigatorKey != null) {
+              context = navigatorKey.currentState.overlay.context;
+            }
+
             showDialog(
               context: context,
               builder: (BuildContext context) {
