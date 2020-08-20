@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlavorBanner(
+      textDirection:  TextDirection.ltr,
       child: MaterialApp(
         home: Scaffold(
           body: Column(
@@ -67,6 +68,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlavorBanner(
+      textDirection:  TextDirection.ltr,
       child: MaterialApp(
         home: Scaffold(
           body: Column(

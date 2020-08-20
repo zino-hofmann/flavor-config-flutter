@@ -1,3 +1,7 @@
+## [1.0.1] - 20-08-2020.
+
+- Added `textDirection` option.
+
 ## [1.0.0+1] - 20-08-2020.
 
 - Added more dartdoc comments to the public API.
