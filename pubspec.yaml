@@ -1,7 +1,7 @@
 name: flavor_config
-description: An easy to use package for creating flavours for any environment.
+description: An easy to use package for creating flavors for any environment.
 version: 1.0.0
-homepage: https://github.com/zino-hofmann/flavour-config-flutter
+homepage: https://github.com/zino-hofmann/flavor-config-flutter
 
 environment:
   sdk: ">=2.7.0 <3.0.0"

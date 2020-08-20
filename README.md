@@ -1,6 +1,6 @@
 # flavor_config
 
-An easy to use package for creating flavours for any environment.
+An easy to use package for creating flavors for any environment.
 
 ## Usage
 
@@ -89,4 +89,4 @@ class MyApp extends StatelessWidget {
 
 ## Licence
 
-This Flutter package is made available under a [MIT license](https://github.com/zino-hofmann/flavour-config-flutter/blob/main/LICENSE).
+This Flutter package is made available under a [MIT license](https://github.com/zino-hofmann/flavor-config-flutter/blob/main/LICENSE).
