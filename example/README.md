@@ -26,10 +26,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FlavorBanner(
-      textDirection:  TextDirection.ltr,
-      child: MaterialApp(
-        home: Scaffold(
+    return  MaterialApp(
+      home: FlavorBanner(
+        child: Scaffold(
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -67,10 +66,9 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FlavorBanner(
-      textDirection:  TextDirection.ltr,
-      child: MaterialApp(
-        home: Scaffold(
+    return  MaterialApp(
+      home: FlavorBanner(
+        child: Scaffold(
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

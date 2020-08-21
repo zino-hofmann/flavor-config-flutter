@@ -1,3 +1,7 @@
+## [1.1.0+1] - 20-08-2020.
+
+- Fixed the examples in the docs.
+
 ## [1.1.0] - 20-08-2020.
 
 - Added support to define both the `bannerColor` and `textColor`.
