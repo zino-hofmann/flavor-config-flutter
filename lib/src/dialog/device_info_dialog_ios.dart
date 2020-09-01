@@ -31,7 +31,7 @@ class DeviceInfoDialogIOS extends StatelessWidget {
             children: <Widget>[
               DeviceInfoDialogTile(
                 name: 'Flavor:',
-                value: FlavorConfig.getFlavorName(),
+                value: FlavorConfig.getFlavorName().toUpperCase(),
               ),
               DeviceInfoDialogTile(
                 name: 'Build mode:',
