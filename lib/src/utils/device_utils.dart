@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import 'package:device_info/device_info.dart';
 
 enum BuildMode {
@@ -9,19 +11,15 @@ enum BuildMode {
 class DeviceUtils {
   /// Returns the current build mode.
   static BuildMode currentBuildMode() {
-    if (const bool.fromEnvironment('dart.vm.product')) {
+    if (kReleaseMode) {
       return BuildMode.RELEASE;
     }
 
-    var result = BuildMode.PROFILE;
+    if (kProfileMode) {
+      return BuildMode.PROFILE;
+    }
 
-    // little trick, since assert only runs on DEBUG mode
-    assert(() {
-      result = BuildMode.DEBUG;
-      return true;
-    }());
-
-    return result;
+    return BuildMode.DEBUG;
   }
 
   /// Returns a [Future] resolving into [AndroidDeviceInfo].
