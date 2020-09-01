@@ -1,3 +1,8 @@
+## [1.2.0] - 01-09-2020.
+
+- Changed build mode logic to use `kReleaseMode` and `kProfileMode` to determine the build mode.
+- Changed the capitalization of the flavor in the [DeviceInfoDialog].
+
 ## [1.1.0+1] - 20-08-2020.
 
 - Fixed the examples in the docs.
