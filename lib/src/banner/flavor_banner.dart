@@ -6,14 +6,14 @@ import 'package:flavor_config/src/dialog/device_info_dialog.dart';
 class FlavorBanner extends StatelessWidget {
   /// The [GlobalKey<NavigatorState>] for when the [FlavorBanner] in not in a context with
   /// that includes a [Navigator].
-  final GlobalKey<NavigatorState> navigatorKey;
+  final GlobalKey<NavigatorState>? navigatorKey;
 
   /// The child where the banner should be rendered on top of.
   final Widget child;
 
   FlavorBanner({
     this.navigatorKey,
-    @required this.child,
+    required this.child,
   });
 
   @override
@@ -27,6 +27,16 @@ class FlavorBanner extends StatelessWidget {
         child,
         GestureDetector(
           behavior: HitTestBehavior.translucent,
+          onLongPress: () {
+            context = navigatorKey?.currentState?.overlay?.context ?? context;
+
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return DeviceInfoDialog();
+              },
+            );
+          },
           child: Container(
             width: 50,
             height: 50,
@@ -46,18 +56,6 @@ class FlavorBanner extends StatelessWidget {
               ),
             ),
           ),
-          onLongPress: () {
-            if (navigatorKey != null) {
-              context = navigatorKey.currentState.overlay.context;
-            }
-
-            showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return DeviceInfoDialog();
-              },
-            );
-          },
         ),
       ],
     );

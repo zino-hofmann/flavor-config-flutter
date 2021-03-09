@@ -7,7 +7,7 @@ import 'package:flavor_config/src/dialog/device_info_dialog_ios.dart';
 
 class DeviceInfoDialog extends StatelessWidget {
   DeviceInfoDialog({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override

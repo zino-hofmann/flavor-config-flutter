@@ -4,7 +4,7 @@ class FlavorConfig {
   /// The name of the flavor.
   final String flavorName;
 
-  /// Determains if the banner should be shown.
+  /// Determines if the banner should be shown.
   final bool bannerEnabled;
 
   /// The color of the banner if enabled.
@@ -16,20 +16,20 @@ class FlavorConfig {
   /// The values that belong to the flavor.
   final Map<String, dynamic> values;
 
-  static FlavorConfig _instance;
+  static late FlavorConfig _instance;
 
   static FlavorConfig get instance {
     return _instance;
   }
 
   factory FlavorConfig({
-    @required String flavorName,
+    required String flavorName,
     bool bannerEnabled = true,
     Color bannerColor = Colors.pink,
     Color textColor = Colors.white,
-    @required Map<String, dynamic> values,
+    required Map<String, dynamic> values,
   }) {
-    _instance ??= FlavorConfig._internal(
+    _instance = FlavorConfig._internal(
       flavorName,
       bannerEnabled,
       bannerColor,

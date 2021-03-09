@@ -9,7 +9,7 @@ import 'package:flavor_config/src/dialog/device_info_dialog_tile.dart';
 
 class DeviceInfoDialogIOS extends StatelessWidget {
   DeviceInfoDialogIOS({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -41,23 +41,23 @@ class DeviceInfoDialogIOS extends StatelessWidget {
               ),
               DeviceInfoDialogTile(
                 name: 'Physical device:',
-                value: device.isPhysicalDevice.toString(),
+                value: device?.isPhysicalDevice.toString() ?? 'Unknown',
               ),
               DeviceInfoDialogTile(
                 name: 'Device:',
-                value: device.name,
+                value: device?.name ?? 'Unknown',
               ),
               DeviceInfoDialogTile(
                 name: 'Model:',
-                value: device.model,
+                value: device?.model ?? 'Unknown',
               ),
               DeviceInfoDialogTile(
                 name: 'System name:',
-                value: device.systemName,
+                value: device?.systemName ?? 'Unknown',
               ),
               DeviceInfoDialogTile(
                 name: 'System version:',
-                value: device.systemVersion,
+                value: device?.systemVersion ?? 'Unknown',
               ),
             ],
           ),

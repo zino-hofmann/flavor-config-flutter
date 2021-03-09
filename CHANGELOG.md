@@ -1,3 +1,7 @@
+## [1.3.0] - 01-09-2020.
+
+- Null safety
+
 ## [1.2.0] - 01-09-2020.
 
 - Changed build mode logic to use `kReleaseMode` and `kProfileMode` to determine the build mode.

@@ -9,7 +9,7 @@ import 'package:flavor_config/src/dialog/device_info_dialog_tile.dart';
 
 class DeviceInfoDialogAndroid extends StatelessWidget {
   DeviceInfoDialogAndroid({
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -41,23 +41,23 @@ class DeviceInfoDialogAndroid extends StatelessWidget {
               ),
               DeviceInfoDialogTile(
                 name: 'Physical device:',
-                value: device.isPhysicalDevice.toString(),
+                value: device?.isPhysicalDevice.toString() ?? 'Unknown',
               ),
               DeviceInfoDialogTile(
                 name: 'Manufacturer:',
-                value: device.manufacturer,
+                value: device?.manufacturer ?? 'Unknown',
               ),
               DeviceInfoDialogTile(
                 name: 'Model:',
-                value: device.model,
+                value: device?.model ?? 'Unknown',
               ),
               DeviceInfoDialogTile(
                 name: 'Android version:',
-                value: device.version.release,
+                value: device?.version.release ?? 'Unknown',
               ),
               DeviceInfoDialogTile(
                 name: 'Android SDK:',
-                value: device.version.sdkInt.toString(),
+                value: device?.version.sdkInt.toString() ?? 'Unknown',
               ),
             ],
           ),

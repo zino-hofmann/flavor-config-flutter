@@ -5,9 +5,9 @@ class DeviceInfoDialogTile extends StatelessWidget {
   final String value;
 
   DeviceInfoDialogTile({
-    Key key,
-    @required this.name,
-    @required this.value,
+    Key? key,
+    required this.name,
+    required this.value,
   }) : super(key: key);
 
   @override
