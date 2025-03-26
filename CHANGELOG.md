@@ -1,3 +1,7 @@
+## [1.4.0] - 26-03-2025.
+
+- Changed `device_info` to `device_info_plus`.
+
 ## [1.3.0] - 01-09-2020.
 
 - Null safety
