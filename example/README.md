@@ -1,8 +1,6 @@
-# Examples
-
 You should create multiple main files in your `lib` folder. If you for example have a `dev` and `prod` environment, then you should create `lib/dev_main.dart` and `lib/prod_main.dart`.
 
-You can course create as many environments as you need.
+You can of course create as many environments as you need.
 
 ## lib/dev_main.dart
 
@@ -24,9 +22,10 @@ void main() {
 };
 
 class MyApp extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       home: FlavorBanner(
         child: Scaffold(
           body: Column(
@@ -64,6 +63,7 @@ void main() {
 };
 
 class MyApp extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
