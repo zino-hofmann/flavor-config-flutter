@@ -1,32 +1,26 @@
-import 'dart:io';
-
+import 'package:flavor_config/src/dialog/device_info_dialog_content.dart';
 import 'package:flutter/material.dart';
 
-import 'package:flavor_config/src/dialog/device_info_dialog_android.dart';
-import 'package:flavor_config/src/dialog/device_info_dialog_ios.dart';
-
+/// Dialog displaying device information including flavor, build mode, and platform details.
+///
+/// Automatically adapts to show platform-specific information for
+/// Android, iOS, Web, Windows, macOS, and Linux.
+///
+/// ```dart
+/// showDialog(
+///   context: context,
+///   builder: (context) => DeviceInfoDialog(),
+/// );
+/// ```
 class DeviceInfoDialog extends StatelessWidget {
-  DeviceInfoDialog({
-    Key? key,
-  }) : super(key: key);
+  /// Creates a [DeviceInfoDialog].
+  const DeviceInfoDialog({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return AlertDialog(
+    return const AlertDialog(
       title: Text('Device Info'),
-      content: _getContent(),
+      content: DeviceInfoDialogContent(),
     );
-  }
-
-  Widget _getContent() {
-    if (Platform.isAndroid) {
-      return DeviceInfoDialogAndroid();
-    }
-
-    if (Platform.isIOS) {
-      return DeviceInfoDialogIOS();
-    }
-
-    return Text("You're not on Android neither iOS");
   }
 }

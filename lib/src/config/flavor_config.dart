@@ -1,6 +1,17 @@
 import 'package:flutter/material.dart';
 
+/// A configuration class for the flavor.
+///
+/// This class is used to configure the flavor of the app.
+///
+/// You can configure the flavor of the app by passing the following parameters:
+/// - `flavorName`: The name of the flavor.
+/// - `bannerEnabled`: Determines if the banner should be shown.
+/// - `bannerColor`: The color of the banner if enabled.
+/// - `textColor`: The color of the text inside the banner if enabled.
+/// - `values`: The values that belong to the flavor.
 class FlavorConfig {
+  /// Creates a [FlavorConfig] instance.
   /// The name of the flavor.
   final String flavorName;
 
@@ -16,31 +27,30 @@ class FlavorConfig {
   /// The values that belong to the flavor.
   final Map<String, dynamic> values;
 
+  /// The instance of the [FlavorConfig].
   static late FlavorConfig _instance;
 
-  static FlavorConfig get instance {
-    return _instance;
-  }
+  /// Gets the instance of the [FlavorConfig].
+  static FlavorConfig get instance => _instance;
 
+  /// The factory constructor for the [FlavorConfig].
   factory FlavorConfig({
     required String flavorName,
+    required Map<String, dynamic> values,
     bool bannerEnabled = true,
     Color bannerColor = Colors.pink,
     Color textColor = Colors.white,
-    required Map<String, dynamic> values,
-  }) {
-    _instance = FlavorConfig._internal(
-      flavorName,
-      bannerEnabled,
-      bannerColor,
-      textColor,
-      values,
-    );
+  }) =>
+      _instance = FlavorConfig._internal(
+        flavorName,
+        bannerEnabled,
+        bannerColor,
+        textColor,
+        values,
+      );
 
-    return _instance;
-  }
-
-  FlavorConfig._internal(
+  /// Creates a [FlavorConfig] instance.
+  const FlavorConfig._internal(
     this.flavorName,
     this.bannerEnabled,
     this.bannerColor,
