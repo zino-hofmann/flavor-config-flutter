@@ -1,10 +1,4 @@
-You should create multiple main files in your `lib` folder. If you for example have a `dev` and `prod` environment, then you should create `lib/dev_main.dart` and `lib/prod_main.dart`.
-
-You can of course create as many environments as you need.
-
-## lib/dev_main.dart
-
-You can add as many values to the flavor config as needed. And quickly access them via: `FlavorConfig.getValue(<valueKey>)`.
+## `lib/dev_main.dart`
 
 ```dart
 import 'package:flutter/material.dart';
@@ -13,27 +7,51 @@ import 'package:flavor_config/flavor_config.dart';
 void main() {
   FlavorConfig(
     flavorName: 'dev',
+    color: Colors.green, // 🔄 Custom banner color
     values: {
       'apiBaseUrl': 'https://dev.example.com/api',
+      'apiKey': 'dev-api-key-12345',
+      'enableLogging': true,
+      'showDebugInfo': true,
     },
   );
 
-  runApp(MyApp());
-};
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'My App - ${FlavorConfig.getFlavorName()}',
       home: FlavorBanner(
         child: Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Flavor: ${FlavorConfig.getFlavorName()}'),
-              Text('apiBaseUrl: ${FlavorConfig.getValue('apiBaseUrl')}'),
-            ],
+          appBar: AppBar(
+            title: Text('Flavor: ${FlavorConfig.getFlavorName()}'),
+            backgroundColor: Colors.green,
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Environment: ${FlavorConfig.getFlavorName()}',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'API: ${FlavorConfig.getValue('apiBaseUrl')}',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  'Logging: ${FlavorConfig.getValue('enableLogging')}',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -42,9 +60,64 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-## lib/prod_main.dart
+## `lib/staging_main.dart`
 
-You can easily disable the banner for a certain flavor by passing `bannerEnabled: false` to the `FlavorConfig`.
+```dart
+import 'package:flutter/material.dart';
+import 'package:flavor_config/flavor_config.dart';
+
+void main() {
+  FlavorConfig(
+    flavorName: 'staging',
+    color: Colors.orange, // 🔄 Custom banner color for staging
+    values: {
+      'apiBaseUrl': 'https://staging.example.com/api',
+      'apiKey': 'staging-api-key-67890',
+      'enableLogging': true,
+      'showDebugInfo': false,
+    },
+  );
+
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'My App - ${FlavorConfig.getFlavorName()}',
+      home: FlavorBanner(
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text('Flavor: ${FlavorConfig.getFlavorName()}'),
+            backgroundColor: Colors.orange,
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Environment: ${FlavorConfig.getFlavorName()}',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'API: ${FlavorConfig.getValue('apiBaseUrl')}',
+                  style: Theme.of(context).textTheme.bodyLarge,
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+
+## `lib/prod_main.dart`
 
 ```dart
 import 'package:flutter/material.dart';
@@ -53,28 +126,45 @@ import 'package:flavor_config/flavor_config.dart';
 void main() {
   FlavorConfig(
     flavorName: 'prod',
-    bannerEnabled: false,
+    bannerEnabled: false, // 🎯 Disable banner in production!
     values: {
-      'apiBaseUrl': 'https://prod.example.com/api',
+      'apiBaseUrl': 'https://api.example.com',
+      'apiKey': 'prod-api-key-secure',
+      'enableLogging': false,
+      'showDebugInfo': false,
     },
   );
 
-  runApp(MyApp());
-};
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
+      title: 'My App',
       home: FlavorBanner(
         child: Scaffold(
-          body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text('Flavor: ${FlavorConfig.getFlavorName()}'),
-              Text('apiBaseUrl: ${FlavorConfig.getValue('apiBaseUrl')}'),
-            ],
+          appBar: AppBar(
+            title: const Text('My App'),
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Welcome to Production!',
+                  style: Theme.of(context).textTheme.headlineSmall,
+                ),
+                const SizedBox(height: 16),
+                Text(
+                  'Environment: ${FlavorConfig.getFlavorName()}',
+                  style: Theme.of(context).textTheme.bodyMedium,
+                ),
+              ],
+            ),
           ),
         ),
       ),
