@@ -1,3 +1,8 @@
+## 2.0.1
+
+- Added `message` option to the `FlavorBanner` widget.
+- Fixed orientation of the banner.
+
 ## 2.0.0
 
 - Refactored the package to be more intuitive and easier to use.
