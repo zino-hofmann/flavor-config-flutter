@@ -12,6 +12,7 @@ class FlavorBanner extends StatelessWidget {
   /// Creates a [FlavorBanner] widget.
   const FlavorBanner({
     required this.child,
+    this.message,
     this.navigatorKey,
     this.bannerTextStyle,
     this.onLongPress,
@@ -24,6 +25,11 @@ class FlavorBanner extends StatelessWidget {
 
   /// The widget that will be rendered on top of the banner.
   final Widget child;
+
+  /// The message to display in the banner.
+  ///
+  /// If no message is provided, the message will be the flavor name.
+  final String? message;
 
   /// The [GlobalKey] for when the [FlavorBanner] in not in a context with
   /// that includes a [Navigator].
@@ -59,27 +65,59 @@ class FlavorBanner extends StatelessWidget {
   Widget build(BuildContext context) {
     if (!FlavorConfig.isBannerEnabled()) return child;
 
+    final bannerLocation = location ?? BannerLocation.topStart;
+    final bannerSize = size ?? _kBannerSize;
+
     return Stack(
       children: [
         child,
-        GestureDetector(
-          behavior: HitTestBehavior.translucent,
-          onLongPress: onLongPress ?? () => _showDeviceInfoDialog(context),
-          child: SizedBox.fromSize(
-            size: size ?? _kBannerSize,
-            child: CustomPaint(
-              painter: BannerPainter(
-                message: FlavorConfig.getFlavorName().toUpperCase(),
-                textDirection: Directionality.of(context),
-                layoutDirection: Directionality.of(context),
-                location: location ?? BannerLocation.topStart,
-                color: FlavorConfig.getBannerColor(),
-                textStyle: bannerTextStyle ?? _defaultTextStyle,
-              ),
+        _buildPositionedBanner(context, bannerLocation, bannerSize),
+      ],
+    );
+  }
+
+  /// Builds the banner positioned according to the [BannerLocation].
+  Widget _buildPositionedBanner(
+    BuildContext context,
+    BannerLocation location,
+    Size bannerSize,
+  ) {
+    // Determine vertical position
+    final isTop = location == BannerLocation.topStart ||
+        location == BannerLocation.topEnd;
+
+    // Determine horizontal position (respecting RTL)
+    final isStart = location == BannerLocation.topStart ||
+        location == BannerLocation.bottomStart;
+    final textDirection = Directionality.of(context);
+    final isRTL = textDirection == TextDirection.rtl;
+
+    // In RTL, "start" means right, "end" means left
+    // In LTR, "start" means left, "end" means right
+    final shouldBeLeft = isRTL ? !isStart : isStart;
+
+    return Positioned(
+      top: isTop ? 0 : null,
+      bottom: isTop ? null : 0,
+      left: shouldBeLeft ? 0 : null,
+      right: shouldBeLeft ? null : 0,
+      child: GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onLongPress: onLongPress ?? () => _showDeviceInfoDialog(context),
+        child: SizedBox.fromSize(
+          size: bannerSize,
+          child: CustomPaint(
+            painter: BannerPainter(
+              message: message ?? FlavorConfig.getFlavorName().toUpperCase(),
+              textDirection: textDirection,
+              layoutDirection: textDirection,
+              location: location,
+              color: FlavorConfig.getBannerColor(),
+              textStyle: bannerTextStyle ?? _defaultTextStyle,
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 
