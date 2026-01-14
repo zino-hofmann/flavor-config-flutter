@@ -1,7 +1,7 @@
 name: flavor_config
 description: An easy to use package for creating flavors for any environment.
 
-version: 2.0.0+1
+version: 2.0.1
 
 homepage: https://github.com/zino-hofmann/flavor-config-flutter
 repository: https://github.com/zino-hofmann/flavor-config-flutter
@@ -13,7 +13,7 @@ environment:
   sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
-  device_info_plus: ^12.2.0
+  device_info_plus: ^12.3.0
   flutter:
     sdk: flutter
 
