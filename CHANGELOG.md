@@ -1,3 +1,7 @@
+## 2.0.2
+
+- Updated `device_info_plus` to `13.1.0`.
+
 ## 2.0.1
 
 - Added `message` option to the `FlavorBanner` widget.
